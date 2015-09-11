@@ -6,11 +6,7 @@
 module AIM514(
 
 	//////////// CLOCK //////////
-	input 		          		CLOCK_125_p,
-	input 		          		CLOCK_50_B5B,
-	input 		          		CLOCK_50_B6A,
-	input 		          		CLOCK_50_B7A,
-	input 		          		CLOCK_50_B8A,
+	input 		          		CLOCK_125_p,  // 125MHz reference clock
 
 	//////////// LED //////////
 	output		     [7:0]		LEDG,
@@ -61,13 +57,32 @@ module AIM514(
 //  REG/WIRE declarations
 //=======================================================
 
+   wire                   clock = KEY[0];
+   
+   heap heap (
+              // memory clock
+	            .clock(clock),
 
+              //----------------------------------------
+              // write address
+              .wraddress(),
+              // write enable bit
+              .wren(),
+              // write payload
+	            .data(),
+
+              //----------------------------------------
+	            // read address
+              .rdaddress(),
+              // read result
+	            .q());
+   
 
 
 //=======================================================
 //  Structural coding
 //=======================================================
 
-
-
+   assign LEDG[3:0] = KEY[3:0];
+   
 endmodule

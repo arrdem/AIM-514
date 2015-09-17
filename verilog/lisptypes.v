@@ -1,5 +1,8 @@
 // A file full of lisp types
-//
+
+// word size
+`define wsize [24:0]
+
 // Tags are 8 bit quantities.
 // 
 // - Bit 0 indicates op or data. It is an error for the PC to take on
@@ -33,7 +36,3 @@
 `define list_type_tag   8'bx000_0100
 `define symbol_type_tag 8'bx000_0110
 `define number_type_tag 8'bx000_1000
-
-module wordslicer();
-
-endmodule
